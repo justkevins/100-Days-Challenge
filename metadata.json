@@ -1,0 +1,5 @@
+{
+  "name": "Stride100 Challenge Tracker",
+  "description": "A 100-day running and walking challenge tracker that normalizes Strava data to track consistency and distance goals.",
+  "requestFramePermissions": []
+}
