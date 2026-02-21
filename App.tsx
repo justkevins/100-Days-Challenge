@@ -6,6 +6,8 @@ import { UserDetailPage } from './pages/UserDetailPage';
 import { AboutPage } from './pages/AboutPage';
 import { AuthCallbackPage } from './pages/AuthCallbackPage';
 
+import { AdminPage } from './pages/AdminPage';
+
 const App: React.FC = () => {
   // Check if we are in the callback phase (Strava redirected with ?code=...)
   // We handle this outside the HashRouter because the query params come before the hash
@@ -35,6 +37,7 @@ const App: React.FC = () => {
           <Route path="/" element={<LeaderboardPage />} />
           <Route path="/user/:userId" element={<UserDetailPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </Layout>
     </HashRouter>

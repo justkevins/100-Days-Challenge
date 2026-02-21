@@ -12,7 +12,7 @@ export const ActivityCalendar: React.FC<Props> = ({ dailyRecords }) => {
   return (
     <div className="w-full overflow-x-auto pb-4">
       <div className="min-w-[800px]">
-        <h4 className="text-sm font-semibold text-slate-700 mb-4">Activity Log (Last 14 days active)</h4>
+        <h4 className="text-sm font-semibold text-slate-700 mb-4">Activity Log</h4>
         <div className="flex gap-1">
           {dates.map((date) => {
             const record = dailyRecords[date];
