@@ -1,0 +1,195 @@
+[
+  {
+    "userId": "175590613",
+    "name": "Kevin Shaji",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIMReRc8fQ9Mt9hpWzx4_7GPLwwgcr9s0MT7vma7bTo-y_2dmXA=s96-c",
+    "totalDistance": 13039.9,
+    "completedDays": 6,
+    "missedDays": 12,
+    "currentStreak": 0,
+    "longestStreak": 6,
+    "completionRate": 33.33333333333333,
+    "dailyRecords": {
+      "2026-02-04": {
+        "date": "2026-02-04",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-05": {
+        "date": "2026-02-05",
+        "totalDistance": 1052,
+        "activities": [
+          {
+            "id": "17295886752",
+            "name": "Evening Run",
+            "distance": 1052,
+            "type": "Run",
+            "start_date_local": "2026-02-05T20:02:52Z",
+            "moving_time": 804
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-06": {
+        "date": "2026-02-06",
+        "totalDistance": 4273.9,
+        "activities": [
+          {
+            "id": "17302021841",
+            "name": "Morning Run",
+            "distance": 4273.9,
+            "type": "Run",
+            "start_date_local": "2026-02-06T07:04:12Z",
+            "moving_time": 2554
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-07": {
+        "date": "2026-02-07",
+        "totalDistance": 1023.3,
+        "activities": [
+          {
+            "id": "17316238511",
+            "name": "Afternoon Run",
+            "distance": 1023.3,
+            "type": "Run",
+            "start_date_local": "2026-02-07T17:33:44Z",
+            "moving_time": 589
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-08": {
+        "date": "2026-02-08",
+        "totalDistance": 1126,
+        "activities": [
+          {
+            "id": "17330646460",
+            "name": "Night Walk",
+            "distance": 1126,
+            "type": "Walk",
+            "start_date_local": "2026-02-08T21:05:55Z",
+            "moving_time": 839
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-09": {
+        "date": "2026-02-09",
+        "totalDistance": 1107.4,
+        "activities": [
+          {
+            "id": "17339707193",
+            "name": "Evening Walk",
+            "distance": 1107.4,
+            "type": "Walk",
+            "start_date_local": "2026-02-09T19:59:33Z",
+            "moving_time": 902
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-10": {
+        "date": "2026-02-10",
+        "totalDistance": 3201.7,
+        "activities": [
+          {
+            "id": "17346126854",
+            "name": "Morning Run",
+            "distance": 3201.7,
+            "type": "Run",
+            "start_date_local": "2026-02-10T07:09:35Z",
+            "moving_time": 2014
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-11": {
+        "date": "2026-02-11",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-12": {
+        "date": "2026-02-12",
+        "totalDistance": 594.1,
+        "activities": [
+          {
+            "id": "17373779963",
+            "name": "Evening Walk",
+            "distance": 594.1,
+            "type": "Walk",
+            "start_date_local": "2026-02-12T19:20:56Z",
+            "moving_time": 522
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-02-13": {
+        "date": "2026-02-13",
+        "totalDistance": 661.5,
+        "activities": [
+          {
+            "id": "17382435239",
+            "name": "Afternoon Walk",
+            "distance": 661.5,
+            "type": "Walk",
+            "start_date_local": "2026-02-13T15:39:26Z",
+            "moving_time": 1063
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-02-14": {
+        "date": "2026-02-14",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-15": {
+        "date": "2026-02-15",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-16": {
+        "date": "2026-02-16",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-17": {
+        "date": "2026-02-17",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-18": {
+        "date": "2026-02-18",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-19": {
+        "date": "2026-02-19",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-20": {
+        "date": "2026-02-20",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-21": {
+        "date": "2026-02-21",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      }
+    }
+  }
+]

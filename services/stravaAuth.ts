@@ -1,10 +1,10 @@
-import { STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REDIRECT_URI } from '../constants';
-import { StravaTokenResponse } from '../types';
+import { STRAVA_CLIENT_ID, STRAVA_REDIRECT_URI } from "../constants";
+import { StravaTokenResponse } from "../types";
 
-const STORAGE_KEY_TOKEN = 'strava_access_token';
-const STORAGE_KEY_REFRESH = 'strava_refresh_token';
-const STORAGE_KEY_EXPIRES = 'strava_expires_at';
-const STORAGE_KEY_USER = 'strava_user_profile';
+const STORAGE_KEY_TOKEN = "strava_access_token";
+const STORAGE_KEY_REFRESH = "strava_refresh_token";
+const STORAGE_KEY_EXPIRES = "strava_expires_at";
+const STORAGE_KEY_USER = "strava_user_profile";
 
 export const initiateStravaAuth = () => {
   if (!STRAVA_CLIENT_ID) {
@@ -15,39 +15,29 @@ export const initiateStravaAuth = () => {
   const params = new URLSearchParams({
     client_id: STRAVA_CLIENT_ID,
     redirect_uri: STRAVA_REDIRECT_URI,
-    response_type: 'code',
-    approval_prompt: 'auto',
-    scope: 'activity:read_all', // Request access to activities
+    response_type: "code",
+    approval_prompt: "auto",
+    scope: "activity:read_all", // Request access to activities
   });
 
   window.location.href = `https://www.strava.com/oauth/authorize?${params.toString()}`;
 };
 
-export const handleAuthCallback = async (code: string): Promise<StravaTokenResponse['athlete']> => {
-  if (!STRAVA_CLIENT_SECRET) {
-    throw new Error("STRAVA_CLIENT_SECRET is missing in constants.ts");
-  }
-
-  const response = await fetch('https://www.strava.com/oauth/token', {
-    method: 'POST',
+export const handleAuthCallback = async (code: string) => {
+  const response = await fetch("/api/auth/exchange", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      client_id: STRAVA_CLIENT_ID,
-      client_secret: STRAVA_CLIENT_SECRET,
-      code,
-      grant_type: 'authorization_code',
-    }),
+    body: JSON.stringify({ code }),
   });
 
   if (!response.ok) {
-    throw new Error('Failed to exchange token');
+    throw new Error("Failed to exchange token");
   }
 
-  const data: StravaTokenResponse = await response.json();
+  const data = await response.json();
 
-  // Store tokens
   localStorage.setItem(STORAGE_KEY_TOKEN, data.access_token);
   localStorage.setItem(STORAGE_KEY_REFRESH, data.refresh_token);
   localStorage.setItem(STORAGE_KEY_EXPIRES, data.expires_at.toString());

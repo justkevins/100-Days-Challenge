@@ -7,6 +7,7 @@ import { AboutPage } from './pages/AboutPage';
 import { AuthCallbackPage } from './pages/AuthCallbackPage';
 
 import { AdminPage } from './pages/AdminPage';
+import AuthCallback from './pages/AuthCallback';
 
 const App: React.FC = () => {
   // Check if we are in the callback phase (Strava redirected with ?code=...)
@@ -38,6 +39,7 @@ const App: React.FC = () => {
           <Route path="/user/:userId" element={<UserDetailPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
         </Routes>
       </Layout>
     </HashRouter>

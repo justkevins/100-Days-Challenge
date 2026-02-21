@@ -3,6 +3,7 @@ import { UserStats } from '../types';
 import { StatCard } from '../components/StatCard';
 import { Link } from 'react-router-dom';
 import { formatDistance } from '../utils/dateUtils';
+import { CHALLENGE_START_DATE, CHALLENGE_DURATION_DAYS } from '../constants';
 import { getLoggedInUser, logout } from '../services/stravaAuth';
 import { fetchAthleteActivities } from '../services/stravaApi';
 import { processUserActivities } from '../services/processor';
@@ -93,6 +94,28 @@ export const LeaderboardPage: React.FC = () => {
   const totalCommunityKm = stats.reduce((acc, curr) => acc + curr.totalDistance, 0);
   const totalCompletedDays = stats.reduce((acc, curr) => acc + curr.completedDays, 0);
 
+  // Compute current challenge day display (handles pre-start and post-end)
+  const getChallengeDayDisplay = (): string => {
+    const start = new Date(CHALLENGE_START_DATE);
+    const today = new Date();
+
+    const startUtc = Date.UTC(start.getFullYear(), start.getMonth(), start.getDate());
+    const todayUtc = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+    const diffDays = Math.floor((todayUtc - startUtc) / (1000 * 60 * 60 * 24));
+    const dayNumber = diffDays + 1;
+
+    if (diffDays < 0) {
+      const daysUntil = Math.abs(diffDays);
+      return `Starts in ${daysUntil} day${daysUntil !== 1 ? 's' : ''}`;
+    }
+
+    if (dayNumber > CHALLENGE_DURATION_DAYS) {
+      return `Day ${CHALLENGE_DURATION_DAYS} of ${CHALLENGE_DURATION_DAYS} (Completed)`;
+    }
+
+    return `Day ${dayNumber} of ${CHALLENGE_DURATION_DAYS}`;
+  };
+
   if (loading) {
     return <div className="p-10 text-center text-slate-500">Loading Leaderboard...</div>;
   }
@@ -124,7 +147,7 @@ export const LeaderboardPage: React.FC = () => {
         <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-lg font-bold text-slate-900">Leaderboard</h2>
-            <p className="text-sm text-slate-500">Day 14 of 100</p>
+            <p className="text-sm text-slate-500">{getChallengeDayDisplay()}</p>
           </div>
           
           <div className="flex flex-wrap gap-2 items-center">
