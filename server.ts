@@ -1,3 +1,7 @@
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import cookieParser from "cookie-parser";
+
 import dotenv from "dotenv";
 import path from "path";
 
@@ -24,14 +28,49 @@ async function startServer() {
   const PORT = 3000;
   console.log("CLIENT ID:", process.env.STRAVA_CLIENT_ID);
   console.log("SECRET EXISTS:", !!process.env.STRAVA_CLIENT_SECRET);
-  app.use(cors());
+  app.use(
+    cors({
+      origin: true,
+      credentials: true,
+    }),
+  );
   app.use(express.json());
+  app.use(cookieParser());
 
   // API Routes
   app.get("/api/leaderboard", (req, res) => {
     const data = getLeaderboardData();
     res.json(data);
   });
+
+  const requireAdmin = (req, res, next) => {
+    const token = req.cookies.admin_token;
+
+    if (!token) {
+      return res.status(401).json({ error: "Not authenticated" });
+    }
+
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
+        role: string;
+        athleteId: number;
+      };
+
+      const allowedAdmins =
+        process.env.ADMIN_ATHLETES?.split(",").map((id) => id.trim()) || [];
+
+      if (
+        decoded.role !== "admin" ||
+        !allowedAdmins.includes(String(decoded.athleteId))
+      ) {
+        return res.status(403).json({ error: "Forbidden" });
+      }
+
+      next();
+    } catch {
+      return res.status(401).json({ error: "Invalid session" });
+    }
+  };
 
   app.post("/api/sync", (req, res) => {
     const userStats = req.body;
@@ -51,6 +90,50 @@ async function startServer() {
     }
 
     saveLeaderboardData(currentData);
+    res.json({ success: true });
+  });
+
+  app.post("/api/admin/login", async (req, res) => {
+    const { password, athleteId } = req.body;
+
+    if (!password || !athleteId) {
+      return res.status(400).json({ error: "Missing credentials" });
+    }
+
+    // ✅ Check athlete whitelist
+    const allowedAdmins =
+      process.env.ADMIN_ATHLETES?.split(",").map((id) => id.trim()) || [];
+
+    if (!allowedAdmins.includes(String(athleteId))) {
+      return res.status(403).json({ error: "Not an admin user" });
+    }
+
+    // ✅ Verify password
+    const valid = await bcrypt.compare(
+      password,
+      process.env.ADMIN_PASSWORD_HASH!,
+    );
+
+    if (!valid) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    // ✅ Create admin session
+    const token = jwt.sign(
+      {
+        role: "admin",
+        athleteId,
+      },
+      process.env.JWT_SECRET!,
+      { expiresIn: "8h" },
+    );
+
+    res.cookie("admin_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+
     res.json({ success: true });
   });
 
@@ -87,48 +170,53 @@ async function startServer() {
     }
   });
 
-  app.post("/api/admin/upload", upload.single("file"), (req, res) => {
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
+  app.post(
+    "/api/admin/upload",
+    requireAdmin,
+    upload.single("file"),
+    (req, res) => {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
 
-    try {
-      // We need to merge the uploaded data with existing data to preserve avatars/metadata if missing in Excel
-      // But the requirement says Admin "changes" data.
-      // Strategy: Parse Excel -> Update matching users in DB.
-      const currentData = getLeaderboardData();
-      const newData = parseExcelFile(req.file.buffer);
+      try {
+        // We need to merge the uploaded data with existing data to preserve avatars/metadata if missing in Excel
+        // But the requirement says Admin "changes" data.
+        // Strategy: Parse Excel -> Update matching users in DB.
+        const currentData = getLeaderboardData();
+        const newData = parseExcelFile(req.file.buffer);
 
-      // Create a map of current data for quick lookup
-      const currentMap = new Map(currentData.map((u) => [u.userId, u]));
+        // Create a map of current data for quick lookup
+        const currentMap = new Map(currentData.map((u) => [u.userId, u]));
 
-      newData.forEach((newUser) => {
-        if (currentMap.has(newUser.userId)) {
-          // Merge: Keep existing avatar if new one is generic/empty, overwrite stats
-          const existing = currentMap.get(newUser.userId)!;
-          currentMap.set(newUser.userId, {
-            ...existing,
-            ...newUser,
-            avatarUrl: existing.avatarUrl || newUser.avatarUrl, // Prefer existing avatar if available
-          });
-        } else {
-          currentMap.set(newUser.userId, newUser);
-        }
-      });
+        newData.forEach((newUser) => {
+          if (currentMap.has(newUser.userId)) {
+            // Merge: Keep existing avatar if new one is generic/empty, overwrite stats
+            const existing = currentMap.get(newUser.userId)!;
+            currentMap.set(newUser.userId, {
+              ...existing,
+              ...newUser,
+              avatarUrl: existing.avatarUrl || newUser.avatarUrl, // Prefer existing avatar if available
+            });
+          } else {
+            currentMap.set(newUser.userId, newUser);
+          }
+        });
 
-      const mergedData = Array.from(currentMap.values());
-      saveLeaderboardData(mergedData);
-      res.json({
-        message: "Leaderboard updated successfully",
-        count: mergedData.length,
-      });
-    } catch (error) {
-      console.error("Error processing file:", error);
-      res.status(500).json({ error: "Failed to process Excel file" });
-    }
-  });
+        const mergedData = Array.from(currentMap.values());
+        saveLeaderboardData(mergedData);
+        res.json({
+          message: "Leaderboard updated successfully",
+          count: mergedData.length,
+        });
+      } catch (error) {
+        console.error("Error processing file:", error);
+        res.status(500).json({ error: "Failed to process Excel file" });
+      }
+    },
+  );
 
-  app.get("/api/admin/export", (req, res) => {
+  app.get("/api/admin/export", requireAdmin, (req, res) => {
     try {
       const currentData = getLeaderboardData();
       const buffer = generateExcelTemplate(currentData); // Now passes actual data
@@ -145,6 +233,10 @@ async function startServer() {
       console.error("Error generating export:", error);
       res.status(500).json({ error: "Failed to generate export" });
     }
+  });
+
+  app.get("/api/admin/me", requireAdmin, (req, res) => {
+    res.json({ role: "admin" });
   });
 
   // Vite middleware for development

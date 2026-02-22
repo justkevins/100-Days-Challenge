@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import * as XLSX from 'xlsx';
 import { UserStats, DailyRecord } from '../types';
+import { CHALLENGE_START_DATE, CHALLENGE_DURATION_DAYS } from '../constants';
 
 const DB_PATH = path.join(process.cwd(), 'db');
 const DB_FILE = path.join(DB_PATH, 'leaderboard.json');
@@ -62,7 +63,7 @@ export const parseExcelFile = (buffer: Buffer): UserStats[] => {
         
         // Calculate date for Day X
         // Assuming Day 1 is 2026-01-01 for this example
-        const startDate = new Date('2026-01-01'); 
+        const startDate = new Date(CHALLENGE_START_DATE);
         const date = new Date(startDate);
         date.setDate(startDate.getDate() + (dayNum - 1));
         const dateStr = date.toISOString().split('T')[0];
@@ -123,7 +124,7 @@ export const generateExcelTemplate = (data: UserStats[] = []): Buffer => {
     // We need to map dates back to "Day X". 
     // Assuming Day 1 = 2026-01-01 (Must match the import logic!)
     // Ideally, we should store the challenge start date in a config or pass it in.
-    const startDate = new Date('2026-01-01');
+    const startDate = new Date(CHALLENGE_START_DATE);
 
     for (let i = 1; i <= 100; i++) {
       const date = new Date(startDate);

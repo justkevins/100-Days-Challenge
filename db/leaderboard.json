@@ -5,10 +5,10 @@
     "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIMReRc8fQ9Mt9hpWzx4_7GPLwwgcr9s0MT7vma7bTo-y_2dmXA=s96-c",
     "totalDistance": 13039.9,
     "completedDays": 6,
-    "missedDays": 12,
+    "missedDays": 13,
     "currentStreak": 0,
     "longestStreak": 6,
-    "completionRate": 33.33333333333333,
+    "completionRate": 31.57894736842105,
     "dailyRecords": {
       "2026-02-04": {
         "date": "2026-02-04",
@@ -186,6 +186,12 @@
       },
       "2026-02-21": {
         "date": "2026-02-21",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-22": {
+        "date": "2026-02-22",
         "totalDistance": 0,
         "activities": [],
         "isCompleted": false
