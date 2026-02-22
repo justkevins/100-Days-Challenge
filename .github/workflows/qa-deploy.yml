@@ -3,7 +3,7 @@ name: Deploy QA
 on:
   push:
     branches:
-      - dev
+      - development
 
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd ${{ secrets.QA_PATH }}
-            git pull origin dev
+            git pull origin development
             sudo docker build -t stride100:qa .
             sudo docker stop stride100-qa || true
             sudo docker rm stride100-qa || true
