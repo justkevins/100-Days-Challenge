@@ -9,8 +9,8 @@ const envFile =
   process.env.NODE_ENV === "production"
     ? ".env.prod"
     : process.env.NODE_ENV === "qa"
-    ? ".env.qa"
-    : ".env";
+      ? ".env.qa"
+      : ".env";
 
 dotenv.config({
   path: path.resolve(process.cwd(), envFile),
@@ -152,28 +152,32 @@ async function startServer() {
     }
 
     try {
-      const response = await fetch("https://www.strava.com/oauth/token", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          client_id: process.env.STRAVA_CLIENT_ID,
-          client_secret: process.env.STRAVA_CLIENT_SECRET,
-          code,
-          grant_type: "authorization_code",
-          redirect_uri: process.env.STRAVA_REDIRECT_URI,
-        }),
+      const params = new URLSearchParams({
+        client_id: process.env.STRAVA_CLIENT_ID!,
+        client_secret: process.env.STRAVA_CLIENT_SECRET!,
+        code,
+        grant_type: "authorization_code",
+        redirect_uri: process.env.STRAVA_REDIRECT_URI!,
       });
 
-      if (!response.ok) {
-        return res.status(400).json({
-          error: "Strava token exchange failed",
-        });
-      }
+      const response = await fetch("https://www.strava.com/oauth/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params.toString(),
+      });
 
       const data = await response.json();
+
+      if (!response.ok) {
+        console.error("STRAVA ERROR:", data);
+        return res.status(400).json(data);
+      }
+
       res.json(data);
     } catch (err) {
-      console.error(err);
+      console.error("Exchange failed:", err);
       res.status(500).json({ error: "Token exchange failed" });
     }
   });

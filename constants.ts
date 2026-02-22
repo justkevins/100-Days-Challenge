@@ -5,6 +5,3 @@ export const ALLOWED_TYPES = ["Run", "Walk", "Hike"];
 
 
 export const STRAVA_CLIENT_ID = "202848";
-
-export const STRAVA_REDIRECT_URI =
-  process.env.STRAVA_REDIRECT_URI || "http://localhost:3000/auth/callback";
