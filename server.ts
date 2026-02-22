@@ -5,8 +5,15 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import path from "path";
 
+const envFile =
+  process.env.NODE_ENV === "production"
+    ? ".env.prod"
+    : process.env.NODE_ENV === "qa"
+    ? ".env.qa"
+    : ".env";
+
 dotenv.config({
-  path: path.resolve(process.cwd(), ".env"),
+  path: path.resolve(process.cwd(), envFile),
 });
 
 import express from "express";
@@ -153,6 +160,7 @@ async function startServer() {
           client_secret: process.env.STRAVA_CLIENT_SECRET,
           code,
           grant_type: "authorization_code",
+          redirect_uri: process.env.STRAVA_REDIRECT_URI,
         }),
       });
 
