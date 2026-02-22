@@ -1,22 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { LeaderboardPage } from './pages/LeaderboardPage';
-import { UserDetailPage } from './pages/UserDetailPage';
-import { AboutPage } from './pages/AboutPage';
-import { AuthCallbackPage } from './pages/AuthCallbackPage';
+import React, { useEffect, useState } from "react";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { LeaderboardPage } from "./pages/LeaderboardPage";
+import { UserDetailPage } from "./pages/UserDetailPage";
+import { AboutPage } from "./pages/AboutPage";
+import { AuthCallbackPage } from "./pages/AuthCallbackPage";
 
-import { AdminPage } from './pages/AdminPage';
-import AuthCallback from './pages/AuthCallback';
+import { AdminPage } from "./pages/AdminPage";
+import AuthCallback from "./pages/AuthCallback";
 
 const App: React.FC = () => {
   // Check if we are in the callback phase (Strava redirected with ?code=...)
   // We handle this outside the HashRouter because the query params come before the hash
   const [authCode, setAuthCode] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const res = await fetch("/api/admin/me", {
+          credentials: "include",
+        });
+
+        if (res.ok) {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch {
+        setIsAdmin(false);
+      }
+    };
+
+    checkAdmin();
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
+    const code = params.get("code");
     if (code) {
       setAuthCode(code);
     }
@@ -24,7 +45,6 @@ const App: React.FC = () => {
 
   const handleAuthSuccess = () => {
     setAuthCode(null);
-    // Force a re-render/reload logic if needed, or just let state clear
   };
 
   if (authCode) {
@@ -38,7 +58,10 @@ const App: React.FC = () => {
           <Route path="/" element={<LeaderboardPage />} />
           <Route path="/user/:userId" element={<UserDetailPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route
+            path="/admin"
+            element={isAdmin ? <AdminPage /> : <Navigate to="/" />}
+          />
           <Route path="/auth/callback" element={<AuthCallback />} />
         </Routes>
       </Layout>
