@@ -1,4 +1,4 @@
-import { STRAVA_CLIENT_ID, STRAVA_REDIRECT_URI } from "../constants";
+import { STRAVA_CLIENT_ID } from "../constants";
 import { StravaTokenResponse } from "../types";
 
 const STORAGE_KEY_TOKEN = "strava_access_token";
@@ -14,7 +14,7 @@ export const initiateStravaAuth = () => {
 
   const params = new URLSearchParams({
     client_id: STRAVA_CLIENT_ID,
-    redirect_uri: STRAVA_REDIRECT_URI,
+    redirect_uri: `${window.location.origin}/auth/callback`,
     response_type: "code",
     approval_prompt: "auto",
     scope: "activity:read_all", // Request access to activities
