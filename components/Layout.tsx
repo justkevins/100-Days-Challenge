@@ -103,21 +103,33 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
         <div className="max-w-6xl mx-auto px-4 text-center text-slate-500 text-sm">
           <p>Built for the Running Community.</p>
           <p className="mt-2">Not officially affiliated with Strava.</p>
-          <div className="mt-4 flex justify-center gap-4 text-sm text-slate-400">
+          <div className="mt-4 flex justify-center items-center gap-3 text-sm text-slate-400">
             <Link
               to="/about"
               className="hover:text-orange-600 transition-colors"
             >
               About
             </Link>
+
             <span>•</span>
+
+            <Link
+              to="/support"
+              className="hover:text-orange-600 transition-colors"
+            >
+              Support
+            </Link>
+
             {isAdmin && (
-              <Link
-                to="/admin"
-                className="hover:text-orange-600 transition-colors"
-              >
-                Admin
-              </Link>
+              <>
+                <span>•</span>
+                <Link
+                  to="/admin"
+                  className="hover:text-orange-600 transition-colors"
+                >
+                  Admin
+                </Link>
+              </>
             )}
           </div>
         </div>
