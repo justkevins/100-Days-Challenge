@@ -20,6 +20,7 @@ export const AdminPage: React.FC = () => {
 
         if (res.ok) {
           setIsAuthenticated(true);
+          window.location.reload();
         }
       } catch {
         setIsAuthenticated(false);
