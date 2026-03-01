@@ -14,7 +14,7 @@ export const initiateStravaAuth = () => {
 
   const params = new URLSearchParams({
     client_id: STRAVA_CLIENT_ID,
-    redirect_uri: `${window.location.origin}/auth/callback`,
+    redirect_uri: `${window.location.origin}/api/auth/callback`,
     response_type: "code",
     approval_prompt: "auto",
     scope: "activity:read_all", // Request access to activities
