@@ -9,15 +9,23 @@ import { AuthCallbackPage } from "./pages/AuthCallbackPage";
 import { AdminPage } from "./pages/AdminPage";
 import AuthCallback from "./pages/AuthCallback";
 import { Support } from "./pages/Support";
+import { getLoggedInUser } from "./services/stravaAuth";
+import { isWhitelistedAdminAthlete } from "./utils/admin";
 
 const App: React.FC = () => {
   // Check if we are in the callback phase (Strava redirected with ?code=...)
   // We handle this outside the HashRouter because the query params come before the hash
   const [authCode, setAuthCode] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const currentUser = getLoggedInUser();
+  const canAccessAdmin =
+    isAdmin || isWhitelistedAdminAthlete(currentUser?.id);
 
   useEffect(() => {
     const checkAdmin = async () => {
+      const currentUser = getLoggedInUser();
+      setIsAdmin(isWhitelistedAdminAthlete(currentUser?.id));
+
       try {
         const res = await fetch("/api/admin/me", {
           credentials: "include",
@@ -25,11 +33,9 @@ const App: React.FC = () => {
 
         if (res.ok) {
           setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
         }
       } catch {
-        setIsAdmin(false);
+        // Ignore cookie-based admin check failures and keep whitelist-based access.
       }
     };
 
@@ -45,6 +51,8 @@ const App: React.FC = () => {
   }, []);
 
   const handleAuthSuccess = () => {
+    const currentUser = getLoggedInUser();
+    setIsAdmin(isWhitelistedAdminAthlete(currentUser?.id));
     setAuthCode(null);
   };
 
@@ -61,7 +69,7 @@ const App: React.FC = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route
             path="/admin"
-            element={isAdmin ? <AdminPage /> : <Navigate to="/" />}
+            element={canAccessAdmin ? <AdminPage /> : <Navigate to="/" />}
           />
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/support" element={<Support />} />

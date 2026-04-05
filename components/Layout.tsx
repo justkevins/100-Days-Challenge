@@ -5,6 +5,7 @@ import {
   getLoggedInUser,
   logout,
 } from "../services/stravaAuth";
+import { isWhitelistedAdminAthlete } from "../utils/admin";
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -17,6 +18,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const currentUser = getLoggedInUser();
     setUser(currentUser);
+    setIsAdmin(isWhitelistedAdminAthlete(currentUser?.id));
 
     if (!currentUser) return;
 
@@ -36,17 +38,36 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
     <div className="min-h-screen flex flex-col font-sans">
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center gap-2">
+          <div className="flex min-h-16 flex-col justify-center gap-3 py-3 md:h-16 md:min-h-0 md:flex-row md:items-center md:justify-between md:gap-0 md:py-0">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2 min-w-0">
               <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
                 S
               </div>
               <Link
                 to="/"
-                className="text-xl font-bold tracking-tight text-slate-900"
+                className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 whitespace-nowrap"
               >
                 Stride<span className="text-orange-600">100</span>
               </Link>
+              </div>
+
+              <div className="flex items-center gap-3 md:hidden shrink-0">
+                {user ? (
+                  <img
+                    src={user.profile}
+                    alt="Profile"
+                    className="w-9 h-9 rounded-full border border-slate-200"
+                  />
+                ) : (
+                  <button
+                    onClick={initiateStravaAuth}
+                    className="bg-[#fc4c02] text-white px-3 py-2 rounded-full text-xs font-medium hover:bg-[#e34402] transition-colors shadow-sm whitespace-nowrap"
+                  >
+                    Connect Strava
+                  </button>
+                )}
+              </div>
             </div>
 
             <div className="hidden md:flex space-x-8">
@@ -58,7 +79,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
               </Link>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-4">
               {user ? (
                 <div className="flex items-center gap-3">
                   <div className="hidden md:block text-right">
@@ -79,14 +100,43 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
                   />
                 </div>
               ) : (
-                <div className="hidden md:block">
-                  <button
-                    onClick={initiateStravaAuth}
-                    className="bg-[#fc4c02] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#e34402] transition-colors shadow-sm flex items-center gap-2"
-                  >
-                    Connect Strava
-                  </button>
-                </div>
+                <button
+                  onClick={initiateStravaAuth}
+                  className="bg-[#fc4c02] text-white px-3 py-2 md:px-4 rounded-full text-xs md:text-sm font-medium hover:bg-[#e34402] transition-colors shadow-sm flex items-center gap-2 whitespace-nowrap"
+                >
+                  Connect Strava
+                </button>
+              )}
+            </div>
+
+            <div className="flex md:hidden items-center gap-2 overflow-x-auto pb-1">
+              <Link
+                to="/"
+                className={`rounded-full px-3 py-1.5 text-sm whitespace-nowrap ${
+                  path === "/"
+                    ? "bg-orange-100 text-orange-700 font-semibold"
+                    : "bg-slate-100 text-slate-600"
+                }`}
+              >
+                Leaderboard
+              </Link>
+              <Link
+                to="/about"
+                className={`rounded-full px-3 py-1.5 text-sm whitespace-nowrap ${
+                  path === "/about"
+                    ? "bg-orange-100 text-orange-700 font-semibold"
+                    : "bg-slate-100 text-slate-600"
+                }`}
+              >
+                About & Rules
+              </Link>
+              {user && (
+                <button
+                  onClick={logout}
+                  className="rounded-full px-3 py-1.5 text-sm whitespace-nowrap bg-red-50 text-red-600"
+                >
+                  Log Out
+                </button>
               )}
             </div>
           </div>
@@ -103,6 +153,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
         <div className="max-w-6xl mx-auto px-4 text-center text-slate-500 text-sm">
           <p>Built for the Running Community.</p>
           <p className="mt-2">Not officially affiliated with Strava.</p>
+          <p className="mt-2 text-slate-400">
+            Built by AI. Kevin handled the consequences.
+          </p>
           <div className="mt-4 flex justify-center items-center gap-3 text-sm text-slate-400">
             <Link
               to="/about"

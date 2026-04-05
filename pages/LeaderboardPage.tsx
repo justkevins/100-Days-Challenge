@@ -3,10 +3,55 @@ import { UserStats } from "../types";
 import { StatCard } from "../components/StatCard";
 import { Link } from "react-router-dom";
 import { formatDistance } from "../utils/dateUtils";
-import { CHALLENGE_START_DATE, CHALLENGE_DURATION_DAYS } from "../constants";
+import {
+  CHALLENGE_START_DATE,
+  CHALLENGE_DURATION_DAYS,
+  SYNC_COOLDOWN_MS,
+} from "../constants";
 import { getLoggedInUser, logout } from "../services/stravaAuth";
 import { fetchAthleteActivities } from "../services/stravaApi";
 import { processUserActivities } from "../services/processor";
+
+interface SyncStatus {
+  canSync: boolean;
+  lastSyncedAt: string | null;
+  nextAllowedAt: string | null;
+  retryAfterMs: number;
+  reason: string;
+}
+
+const getSyncStorageKey = (userId: string | number) => `sync_status_${userId}`;
+
+const readStoredSyncStatus = (userId: string | number): SyncStatus | null => {
+  try {
+    const raw = localStorage.getItem(getSyncStorageKey(userId));
+    if (!raw) return null;
+
+    return JSON.parse(raw) as SyncStatus;
+  } catch {
+    return null;
+  }
+};
+
+const persistSyncStatus = (
+  userId: string | number,
+  status: SyncStatus | null,
+) => {
+  if (!status) {
+    localStorage.removeItem(getSyncStorageKey(userId));
+    return;
+  }
+
+  localStorage.setItem(getSyncStorageKey(userId), JSON.stringify(status));
+};
+
+const formatCooldown = (remainingMs: number) => {
+  const totalSeconds = Math.max(0, Math.ceil(remainingMs / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+};
 
 export const LeaderboardPage: React.FC = () => {
   const [stats, setStats] = useState<UserStats[]>([]);
@@ -15,9 +60,50 @@ export const LeaderboardPage: React.FC = () => {
     "consistency",
   );
   const [syncing, setSyncing] = useState(false);
+  const [syncStatus, setSyncStatus] = useState<SyncStatus | null>(null);
+  const [now, setNow] = useState(Date.now());
 
   // Get current user to highlight them in the list
   const loggedInUser = getLoggedInUser();
+
+  useEffect(() => {
+    if (!loggedInUser) {
+      setSyncStatus(null);
+      return;
+    }
+
+    const storedStatus = readStoredSyncStatus(loggedInUser.id);
+    if (storedStatus) {
+      setSyncStatus(storedStatus);
+    }
+
+    const loadSyncStatus = async () => {
+      try {
+        const response = await fetch(`/api/sync-status/${loggedInUser.id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch sync status");
+        }
+
+        const data = await response.json();
+        setSyncStatus(data);
+        persistSyncStatus(loggedInUser.id, data);
+      } catch (error) {
+        console.error("Error loading sync status:", error);
+      }
+    };
+
+    loadSyncStatus();
+  }, [loggedInUser?.id]);
+
+  useEffect(() => {
+    if (!syncStatus?.nextAllowedAt) return;
+
+    const interval = window.setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+
+    return () => window.clearInterval(interval);
+  }, [syncStatus?.nextAllowedAt]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -61,6 +147,23 @@ export const LeaderboardPage: React.FC = () => {
       });
 
       if (response.ok) {
+        const result = await response.json();
+        const syncedAt = result.syncedAt ?? new Date().toISOString();
+        const nextAllowedAt =
+          result.nextAllowedAt ??
+          new Date(Date.now() + SYNC_COOLDOWN_MS).toISOString();
+        const nextStatus = {
+          canSync: false,
+          lastSyncedAt: syncedAt,
+          nextAllowedAt,
+          retryAfterMs: Math.max(
+            0,
+            new Date(nextAllowedAt).getTime() - Date.now(),
+          ),
+          reason:
+            result.reason ??
+            "You can sync once every 15 minutes to avoid duplicate updates and unnecessary Strava API requests.",
+        };
         // Refresh local list
         setStats((prevStats) => {
           const others = prevStats.filter(
@@ -68,8 +171,22 @@ export const LeaderboardPage: React.FC = () => {
           );
           return [...others, updatedUserStats];
         });
+        setSyncStatus(nextStatus);
+        persistSyncStatus(loggedInUser.id, nextStatus);
+      } else if (response.status === 429) {
+        const data = await response.json();
+        const nextStatus = {
+          canSync: false,
+          lastSyncedAt: data.lastSyncedAt ?? null,
+          nextAllowedAt: data.nextAllowedAt ?? null,
+          retryAfterMs: data.retryAfterMs ?? SYNC_COOLDOWN_MS,
+          reason: data.reason,
+        };
+        setSyncStatus(nextStatus);
+        persistSyncStatus(loggedInUser.id, nextStatus);
       } else {
         console.error("Server sync failed");
+        alert("Server sync failed. Please try again.");
       }
     } catch (error: any) {
       console.error("Sync failed", error);
@@ -83,6 +200,37 @@ export const LeaderboardPage: React.FC = () => {
       setSyncing(false);
     }
   };
+
+  const remainingSyncMs = syncStatus?.nextAllowedAt
+    ? Math.max(0, new Date(syncStatus.nextAllowedAt).getTime() - now)
+    : 0;
+  const isCooldownActive = !!loggedInUser && remainingSyncMs > 0;
+
+  useEffect(() => {
+    if (!loggedInUser || !syncStatus) return;
+
+    if (!syncStatus.nextAllowedAt || remainingSyncMs > 0) {
+      persistSyncStatus(loggedInUser.id, syncStatus);
+      return;
+    }
+
+    const cooledDownStatus = {
+      ...syncStatus,
+      canSync: true,
+      retryAfterMs: 0,
+    };
+    setSyncStatus(cooledDownStatus);
+    persistSyncStatus(loggedInUser.id, cooledDownStatus);
+  }, [loggedInUser, remainingSyncMs, syncStatus]);
+
+  const syncDisabled = syncing || isCooldownActive;
+  const syncHelperText = syncing
+    ? "Fetching your latest activities from Strava..."
+    : isCooldownActive
+      ? `Sync available in ${formatCooldown(remainingSyncMs)}. ${syncStatus?.reason ?? "Please wait before syncing again."}`
+      : syncStatus?.lastSyncedAt
+        ? "You can sync again now. The 15-minute cooldown has finished."
+        : "Sync pulls your latest Strava activities. A 15-minute cooldown prevents repeated duplicate requests.";
 
   const sortedStats = [...stats].sort((a, b) => {
     if (sortBy === "consistency") {
@@ -174,36 +322,61 @@ export const LeaderboardPage: React.FC = () => {
 
           <div className="flex flex-wrap gap-2 items-center">
             {loggedInUser && (
-              <button
-                onClick={handleManualSync}
-                disabled={syncing}
-                className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-all border ${syncing ? "bg-slate-50 text-slate-400 border-slate-200 cursor-not-allowed" : "bg-white text-slate-700 border-slate-200 hover:border-orange-200 hover:text-orange-600"}`}
-              >
-                {syncing ? (
-                  <>
-                    <div className="w-3 h-3 border-2 border-slate-400 border-t-transparent rounded-full animate-spin"></div>
-                    Syncing...
-                  </>
-                ) : (
-                  <>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                      />
-                    </svg>
-                    Sync Data
-                  </>
+              <div className="group relative flex flex-col items-start gap-1">
+                <button
+                  onClick={handleManualSync}
+                  disabled={syncDisabled}
+                  className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-all border ${syncDisabled ? "bg-slate-50 text-slate-400 border-slate-200 cursor-not-allowed" : "bg-white text-slate-700 border-slate-200 hover:border-orange-200 hover:text-orange-600"}`}
+                >
+                  {syncing ? (
+                    <>
+                      <div className="w-3 h-3 border-2 border-slate-400 border-t-transparent rounded-full animate-spin"></div>
+                      Syncing...
+                    </>
+                  ) : isCooldownActive ? (
+                    <>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      Sync in {formatCooldown(remainingSyncMs)}
+                    </>
+                  ) : (
+                    <>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                        />
+                      </svg>
+                      Sync Data
+                    </>
+                  )}
+                </button>
+                {syncDisabled && (
+                  <div className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 hidden w-72 -translate-x-1/2 rounded-lg bg-slate-900 px-3 py-2 text-xs leading-5 text-white shadow-lg group-hover:block">
+                    {syncHelperText}
+                  </div>
                 )}
-              </button>
+              </div>
             )}
 
             <div className="flex bg-slate-100 p-1 rounded-lg">

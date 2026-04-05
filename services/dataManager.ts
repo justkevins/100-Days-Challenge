@@ -6,6 +6,7 @@ import { CHALLENGE_START_DATE, CHALLENGE_DURATION_DAYS } from '../constants';
 
 const DB_PATH = path.join(process.cwd(), 'db');
 const DB_FILE = path.join(DB_PATH, 'leaderboard.json');
+const SYNC_META_FILE = path.join(DB_PATH, 'sync-meta.json');
 
 // Ensure DB directory exists
 if (!fs.existsSync(DB_PATH)) {
@@ -15,6 +16,10 @@ if (!fs.existsSync(DB_PATH)) {
 // Initialize DB if not exists
 if (!fs.existsSync(DB_FILE)) {
   fs.writeFileSync(DB_FILE, JSON.stringify([], null, 2));
+}
+
+if (!fs.existsSync(SYNC_META_FILE)) {
+  fs.writeFileSync(SYNC_META_FILE, JSON.stringify({}, null, 2));
 }
 
 export const getLeaderboardData = (): UserStats[] => {
@@ -29,6 +34,22 @@ export const getLeaderboardData = (): UserStats[] => {
 
 export const saveLeaderboardData = (data: UserStats[]) => {
   fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
+};
+
+export type SyncMetaRecord = Record<string, string>;
+
+export const getSyncMeta = (): SyncMetaRecord => {
+  try {
+    const data = fs.readFileSync(SYNC_META_FILE, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error reading sync meta DB:', error);
+    return {};
+  }
+};
+
+export const saveSyncMeta = (data: SyncMetaRecord) => {
+  fs.writeFileSync(SYNC_META_FILE, JSON.stringify(data, null, 2));
 };
 
 export const parseExcelFile = (buffer: Buffer): UserStats[] => {
