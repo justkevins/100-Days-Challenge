@@ -8,13 +8,14 @@ interface Props {
 
 export const ActivityCalendar: React.FC<Props> = ({ dailyRecords }) => {
   const dates = Object.keys(dailyRecords).sort();
+  const lastIndex = dates.length - 1;
 
   return (
     <div className="w-full overflow-x-auto pb-4">
-      <div className="min-w-[800px]">
+      <div className="min-w-[800px] pt-14">
         <h4 className="text-sm font-semibold text-slate-700 mb-4">Activity Log</h4>
         <div className="flex gap-1">
-          {dates.map((date) => {
+          {dates.map((date, index) => {
             const record = dailyRecords[date];
             const dist = record.totalDistance;
             const completed = record.isCompleted;
@@ -37,6 +38,13 @@ export const ActivityCalendar: React.FC<Props> = ({ dailyRecords }) => {
                bgClass = 'bg-slate-100'; // Rest
             }
 
+            const tooltipPositionClass =
+              index <= 3
+                ? 'left-0 translate-x-0'
+                : index >= lastIndex - 3
+                  ? 'right-0 translate-x-0'
+                  : 'left-1/2 -translate-x-1/2';
+
             return (
               <div key={date} className="flex flex-col items-center gap-1 group relative">
                 <div 
@@ -44,7 +52,7 @@ export const ActivityCalendar: React.FC<Props> = ({ dailyRecords }) => {
                 />
                 
                 {/* Tooltip */}
-                <div className="absolute bottom-full mb-2 hidden group-hover:block z-10 w-32 p-2 bg-slate-800 text-white text-xs rounded shadow-lg">
+                <div className={`pointer-events-none absolute bottom-full z-10 mb-2 hidden w-32 rounded bg-slate-800 p-2 text-xs text-white shadow-lg group-hover:block ${tooltipPositionClass}`}>
                   <p className="font-bold">{dateLabel}</p>
                   <p>{(dist / 1000).toFixed(2)} km</p>
                   <p className={completed ? 'text-green-400' : 'text-red-400'}>

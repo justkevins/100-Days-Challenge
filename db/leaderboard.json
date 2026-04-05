@@ -3,12 +3,12 @@
     "userId": "175590613",
     "name": "Kevin Shaji",
     "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIMReRc8fQ9Mt9hpWzx4_7GPLwwgcr9s0MT7vma7bTo-y_2dmXA=s96-c",
-    "totalDistance": 13039.9,
-    "completedDays": 6,
-    "missedDays": 13,
+    "totalDistance": 29876.999999999996,
+    "completedDays": 18,
+    "missedDays": 43,
     "currentStreak": 0,
     "longestStreak": 6,
-    "completionRate": 31.57894736842105,
+    "completionRate": 29.508196721311474,
     "dailyRecords": {
       "2026-02-04": {
         "date": "2026-02-04",
@@ -192,6 +192,1689 @@
       },
       "2026-02-22": {
         "date": "2026-02-22",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-23": {
+        "date": "2026-02-23",
+        "totalDistance": 1206.8,
+        "activities": [
+          {
+            "id": "17495296663",
+            "name": "Night Walk",
+            "distance": 1206.8,
+            "type": "Walk",
+            "start_date_local": "2026-02-23T21:07:59Z",
+            "moving_time": 944
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-24": {
+        "date": "2026-02-24",
+        "totalDistance": 2341.1000000000004,
+        "activities": [
+          {
+            "id": "17501473434",
+            "name": "Morning Walk",
+            "distance": 1040.4,
+            "type": "Walk",
+            "start_date_local": "2026-02-24T09:29:05Z",
+            "moving_time": 791
+          },
+          {
+            "id": "17506341358",
+            "name": "Evening Walk",
+            "distance": 1300.7,
+            "type": "Walk",
+            "start_date_local": "2026-02-24T19:42:58Z",
+            "moving_time": 1329
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-25": {
+        "date": "2026-02-25",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-26": {
+        "date": "2026-02-26",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-27": {
+        "date": "2026-02-27",
+        "totalDistance": 1027.8,
+        "activities": [
+          {
+            "id": "17550833029",
+            "name": "Evening Walk",
+            "distance": 1027.8,
+            "type": "Walk",
+            "start_date_local": "2026-02-27T20:13:22Z",
+            "moving_time": 584
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-28": {
+        "date": "2026-02-28",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-01": {
+        "date": "2026-03-01",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-02": {
+        "date": "2026-03-02",
+        "totalDistance": 1262.7,
+        "activities": [
+          {
+            "id": "17576655944",
+            "name": "Evening Walk",
+            "distance": 1262.7,
+            "type": "Walk",
+            "start_date_local": "2026-03-02T20:31:33Z",
+            "moving_time": 987
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-03": {
+        "date": "2026-03-03",
+        "totalDistance": 1137.3,
+        "activities": [
+          {
+            "id": "17588285008",
+            "name": "Evening Walk",
+            "distance": 1137.3,
+            "type": "Walk",
+            "start_date_local": "2026-03-03T19:24:49Z",
+            "moving_time": 894
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-04": {
+        "date": "2026-03-04",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-05": {
+        "date": "2026-03-05",
+        "totalDistance": 1033.6,
+        "activities": [
+          {
+            "id": "17608861147",
+            "name": "Morning Walk",
+            "distance": 1033.6,
+            "type": "Walk",
+            "start_date_local": "2026-03-05T09:09:56Z",
+            "moving_time": 761
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-06": {
+        "date": "2026-03-06",
+        "totalDistance": 1054,
+        "activities": [
+          {
+            "id": "17625261274",
+            "name": "Evening Walk",
+            "distance": 1054,
+            "type": "Walk",
+            "start_date_local": "2026-03-06T20:05:11Z",
+            "moving_time": 1042
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-07": {
+        "date": "2026-03-07",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-08": {
+        "date": "2026-03-08",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-09": {
+        "date": "2026-03-09",
+        "totalDistance": 1503.7,
+        "activities": [
+          {
+            "id": "17667687428",
+            "name": "Evening Walk",
+            "distance": 1503.7,
+            "type": "Walk",
+            "start_date_local": "2026-03-09T20:30:38Z",
+            "moving_time": 1001
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-10": {
+        "date": "2026-03-10",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-11": {
+        "date": "2026-03-11",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-12": {
+        "date": "2026-03-12",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-13": {
+        "date": "2026-03-13",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-14": {
+        "date": "2026-03-14",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-15": {
+        "date": "2026-03-15",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-16": {
+        "date": "2026-03-16",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-17": {
+        "date": "2026-03-17",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-18": {
+        "date": "2026-03-18",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-19": {
+        "date": "2026-03-19",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-20": {
+        "date": "2026-03-20",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-21": {
+        "date": "2026-03-21",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-22": {
+        "date": "2026-03-22",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-23": {
+        "date": "2026-03-23",
+        "totalDistance": 1103.1,
+        "activities": [
+          {
+            "id": "17828074577",
+            "name": "Evening Walk",
+            "distance": 1103.1,
+            "type": "Walk",
+            "start_date_local": "2026-03-23T19:33:23Z",
+            "moving_time": 995
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-24": {
+        "date": "2026-03-24",
+        "totalDistance": 1391.5,
+        "activities": [
+          {
+            "id": "17848427435",
+            "name": "Evening Walk",
+            "distance": 1391.5,
+            "type": "Walk",
+            "start_date_local": "2026-03-24T20:25:18Z",
+            "moving_time": 1174
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-25": {
+        "date": "2026-03-25",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-26": {
+        "date": "2026-03-26",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-27": {
+        "date": "2026-03-27",
+        "totalDistance": 1227.4,
+        "activities": [
+          {
+            "id": "17877024527",
+            "name": "Evening Walk",
+            "distance": 1227.4,
+            "type": "Walk",
+            "start_date_local": "2026-03-27T18:59:47Z",
+            "moving_time": 1119
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-28": {
+        "date": "2026-03-28",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-29": {
+        "date": "2026-03-29",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-30": {
+        "date": "2026-03-30",
+        "totalDistance": 2548.1,
+        "activities": [
+          {
+            "id": "17912828016",
+            "name": "Evening Walk",
+            "distance": 2548.1,
+            "type": "Walk",
+            "start_date_local": "2026-03-30T19:23:04Z",
+            "moving_time": 2043
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-31": {
+        "date": "2026-03-31",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-04-01": {
+        "date": "2026-04-01",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-04-02": {
+        "date": "2026-04-02",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-04-03": {
+        "date": "2026-04-03",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-04-04": {
+        "date": "2026-04-04",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-04-05": {
+        "date": "2026-04-05",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      }
+    }
+  },
+  {
+    "userId": "93917105",
+    "name": "Lakmesh Kumar",
+    "avatarUrl": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/93917105/43169650/1/large.jpg",
+    "totalDistance": 22706.300000000003,
+    "completedDays": 6,
+    "missedDays": 42,
+    "currentStreak": 0,
+    "longestStreak": 2,
+    "completionRate": 12.5,
+    "dailyRecords": {
+      "2026-02-04": {
+        "date": "2026-02-04",
+        "totalDistance": 2856.3,
+        "activities": [
+          {
+            "id": "17285849027",
+            "name": "Night Walk",
+            "distance": 1330,
+            "type": "Walk",
+            "start_date_local": "2026-02-04T21:34:41Z",
+            "moving_time": 1039
+          },
+          {
+            "id": "17285851673",
+            "name": "USTRC | #HDOR1",
+            "distance": 1526.3,
+            "type": "Walk",
+            "start_date_local": "2026-02-04T22:14:35Z",
+            "moving_time": 1223
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-05": {
+        "date": "2026-02-05",
+        "totalDistance": 2890,
+        "activities": [
+          {
+            "id": "17297503772",
+            "name": "USTRC #HDOR2",
+            "distance": 2890,
+            "type": "Run",
+            "start_date_local": "2026-02-05T17:06:22Z",
+            "moving_time": 2002
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-06": {
+        "date": "2026-02-06",
+        "totalDistance": 350.6,
+        "activities": [
+          {
+            "id": "17308485228",
+            "name": "Night Walk",
+            "distance": 350.6,
+            "type": "Walk",
+            "start_date_local": "2026-02-06T23:06:34Z",
+            "moving_time": 251
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-02-07": {
+        "date": "2026-02-07",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-08": {
+        "date": "2026-02-08",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-09": {
+        "date": "2026-02-09",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-10": {
+        "date": "2026-02-10",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-11": {
+        "date": "2026-02-11",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-12": {
+        "date": "2026-02-12",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-13": {
+        "date": "2026-02-13",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-14": {
+        "date": "2026-02-14",
+        "totalDistance": 5778.9,
+        "activities": [
+          {
+            "id": "17396720229",
+            "name": "Nike Run Club: 5K Run",
+            "distance": 443.9,
+            "type": "Run",
+            "start_date_local": "2026-02-14T21:48:58Z",
+            "moving_time": 204
+          },
+          {
+            "id": "17397311630",
+            "name": "Valentine's Day 5k Easy Run",
+            "distance": 5335,
+            "type": "Run",
+            "start_date_local": "2026-02-14T21:53:59Z",
+            "moving_time": 3056
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-15": {
+        "date": "2026-02-15",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-16": {
+        "date": "2026-02-16",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-17": {
+        "date": "2026-02-17",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-18": {
+        "date": "2026-02-18",
+        "totalDistance": 3188.7,
+        "activities": [
+          {
+            "id": "17435074889",
+            "name": "Morning Run",
+            "distance": 148.7,
+            "type": "Run",
+            "start_date_local": "2026-02-18T06:54:35Z",
+            "moving_time": 74
+          },
+          {
+            "id": "17435075015",
+            "name": "Morning Run",
+            "distance": 3040,
+            "type": "Run",
+            "start_date_local": "2026-02-18T06:57:43Z",
+            "moving_time": 1583
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-19": {
+        "date": "2026-02-19",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-20": {
+        "date": "2026-02-20",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-21": {
+        "date": "2026-02-21",
+        "totalDistance": 711.3,
+        "activities": [
+          {
+            "id": "17467182926",
+            "name": "Rameshwaram walk",
+            "distance": 711.3,
+            "type": "Walk",
+            "start_date_local": "2026-02-21T07:51:25Z",
+            "moving_time": 774
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-02-22": {
+        "date": "2026-02-22",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-23": {
+        "date": "2026-02-23",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-24": {
+        "date": "2026-02-24",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-25": {
+        "date": "2026-02-25",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-26": {
+        "date": "2026-02-26",
+        "totalDistance": 520.9,
+        "activities": [
+          {
+            "id": "17530515587",
+            "name": "Evening Walk",
+            "distance": 520.9,
+            "type": "Walk",
+            "start_date_local": "2026-02-26T19:50:24Z",
+            "moving_time": 499
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-02-27": {
+        "date": "2026-02-27",
+        "totalDistance": 3014.3,
+        "activities": [
+          {
+            "id": "17537281868",
+            "name": "Morning Run",
+            "distance": 3014.3,
+            "type": "Run",
+            "start_date_local": "2026-02-27T07:04:00Z",
+            "moving_time": 1776
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-28": {
+        "date": "2026-02-28",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-01": {
+        "date": "2026-03-01",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-02": {
+        "date": "2026-03-02",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-03": {
+        "date": "2026-03-03",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-04": {
+        "date": "2026-03-04",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-05": {
+        "date": "2026-03-05",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-06": {
+        "date": "2026-03-06",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-07": {
+        "date": "2026-03-07",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-08": {
+        "date": "2026-03-08",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-09": {
+        "date": "2026-03-09",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-10": {
+        "date": "2026-03-10",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-11": {
+        "date": "2026-03-11",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-12": {
+        "date": "2026-03-12",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-13": {
+        "date": "2026-03-13",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-14": {
+        "date": "2026-03-14",
+        "totalDistance": 378.4,
+        "activities": [
+          {
+            "id": "17723332937",
+            "name": "Evening Run",
+            "distance": 378.4,
+            "type": "Run",
+            "start_date_local": "2026-03-14T20:10:48Z",
+            "moving_time": 225
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-03-15": {
+        "date": "2026-03-15",
+        "totalDistance": 3016.9,
+        "activities": [
+          {
+            "id": "17723327301",
+            "name": "Nike Run Club: Today's 3K Run",
+            "distance": 3016.9,
+            "type": "Run",
+            "start_date_local": "2026-03-15T00:15:22Z",
+            "moving_time": 2327
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-16": {
+        "date": "2026-03-16",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-17": {
+        "date": "2026-03-17",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-18": {
+        "date": "2026-03-18",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-19": {
+        "date": "2026-03-19",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-20": {
+        "date": "2026-03-20",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-21": {
+        "date": "2026-03-21",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-22": {
+        "date": "2026-03-22",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-23": {
+        "date": "2026-03-23",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      }
+    }
+  },
+  {
+    "userId": "156067952",
+    "name": "Shilpa NS",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLZaMhEtozfHRGH2i7p5VbwPcqSGfbRILQYp01Ws51zUA2lO8cYMQ=s96-c",
+    "totalDistance": 9338.6,
+    "completedDays": 5,
+    "missedDays": 43,
+    "currentStreak": 0,
+    "longestStreak": 4,
+    "completionRate": 10.416666666666668,
+    "dailyRecords": {
+      "2026-02-04": {
+        "date": "2026-02-04",
+        "totalDistance": 1701,
+        "activities": [
+          {
+            "id": "17284867696",
+            "name": "Evening walk #HDOR1",
+            "distance": 1701,
+            "type": "Walk",
+            "start_date_local": "2026-02-04T20:36:15Z",
+            "moving_time": 1341
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-05": {
+        "date": "2026-02-05",
+        "totalDistance": 3771.5,
+        "activities": [
+          {
+            "id": "17295785240",
+            "name": "Evening steps",
+            "distance": 3771.5,
+            "type": "Walk",
+            "start_date_local": "2026-02-05T18:54:23Z",
+            "moving_time": 2751
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-06": {
+        "date": "2026-02-06",
+        "totalDistance": 1597.2,
+        "activities": [
+          {
+            "id": "17307579653",
+            "name": "Miles after sunset",
+            "distance": 1597.2,
+            "type": "Run",
+            "start_date_local": "2026-02-06T21:38:23Z",
+            "moving_time": 911
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-07": {
+        "date": "2026-02-07",
+        "totalDistance": 1029.5,
+        "activities": [
+          {
+            "id": "17319436656",
+            "name": "Night run",
+            "distance": 1029.5,
+            "type": "Run",
+            "start_date_local": "2026-02-07T21:47:08Z",
+            "moving_time": 622
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-08": {
+        "date": "2026-02-08",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-09": {
+        "date": "2026-02-09",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-10": {
+        "date": "2026-02-10",
+        "totalDistance": 1239.4,
+        "activities": [
+          {
+            "id": "17351556502",
+            "name": "Evening walk",
+            "distance": 1239.4,
+            "type": "Run",
+            "start_date_local": "2026-02-10T20:14:09Z",
+            "moving_time": 773
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-11": {
+        "date": "2026-02-11",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-12": {
+        "date": "2026-02-12",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-13": {
+        "date": "2026-02-13",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-14": {
+        "date": "2026-02-14",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-15": {
+        "date": "2026-02-15",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-16": {
+        "date": "2026-02-16",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-17": {
+        "date": "2026-02-17",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-18": {
+        "date": "2026-02-18",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-19": {
+        "date": "2026-02-19",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-20": {
+        "date": "2026-02-20",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-21": {
+        "date": "2026-02-21",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-22": {
+        "date": "2026-02-22",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-23": {
+        "date": "2026-02-23",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-24": {
+        "date": "2026-02-24",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-25": {
+        "date": "2026-02-25",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-26": {
+        "date": "2026-02-26",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-27": {
+        "date": "2026-02-27",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-28": {
+        "date": "2026-02-28",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-01": {
+        "date": "2026-03-01",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-02": {
+        "date": "2026-03-02",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-03": {
+        "date": "2026-03-03",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-04": {
+        "date": "2026-03-04",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-05": {
+        "date": "2026-03-05",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-06": {
+        "date": "2026-03-06",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-07": {
+        "date": "2026-03-07",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-08": {
+        "date": "2026-03-08",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-09": {
+        "date": "2026-03-09",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-10": {
+        "date": "2026-03-10",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-11": {
+        "date": "2026-03-11",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-12": {
+        "date": "2026-03-12",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-13": {
+        "date": "2026-03-13",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-14": {
+        "date": "2026-03-14",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-15": {
+        "date": "2026-03-15",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-16": {
+        "date": "2026-03-16",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-17": {
+        "date": "2026-03-17",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-18": {
+        "date": "2026-03-18",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-19": {
+        "date": "2026-03-19",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-20": {
+        "date": "2026-03-20",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-21": {
+        "date": "2026-03-21",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-22": {
+        "date": "2026-03-22",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-23": {
+        "date": "2026-03-23",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      }
+    }
+  },
+  {
+    "userId": "56971496",
+    "name": "neeraj p",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKjXmJgNphUvMHgjoqGx7MkAIBnS0TLkNjkU_VBA9gp_VRcfnM=s96-c",
+    "totalDistance": 48770.6,
+    "completedDays": 16,
+    "missedDays": 39,
+    "currentStreak": 0,
+    "longestStreak": 4,
+    "completionRate": 29.09090909090909,
+    "dailyRecords": {
+      "2026-02-04": {
+        "date": "2026-02-04",
+        "totalDistance": 1041.7,
+        "activities": [
+          {
+            "id": "17285766835",
+            "name": "Night Walk",
+            "distance": 1041.7,
+            "type": "Walk",
+            "start_date_local": "2026-02-04T22:17:17Z",
+            "moving_time": 946
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-05": {
+        "date": "2026-02-05",
+        "totalDistance": 342.3,
+        "activities": [
+          {
+            "id": "17303429712",
+            "name": "Evening Walk",
+            "distance": 342.3,
+            "type": "Walk",
+            "start_date_local": "2026-02-05T18:38:43Z",
+            "moving_time": 246
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-02-06": {
+        "date": "2026-02-06",
+        "totalDistance": 4358.7,
+        "activities": [
+          {
+            "id": "17306275811",
+            "name": "Evening Walk",
+            "distance": 4358.7,
+            "type": "Walk",
+            "start_date_local": "2026-02-06T18:45:04Z",
+            "moving_time": 2594
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-07": {
+        "date": "2026-02-07",
+        "totalDistance": 3571.3999999999996,
+        "activities": [
+          {
+            "id": "17312811280",
+            "name": "Morning Walk",
+            "distance": 756.6,
+            "type": "Walk",
+            "start_date_local": "2026-02-07T10:30:44Z",
+            "moving_time": 844
+          },
+          {
+            "id": "17316005112",
+            "name": "Afternoon Walk",
+            "distance": 1856,
+            "type": "Walk",
+            "start_date_local": "2026-02-07T16:44:50Z",
+            "moving_time": 1184
+          },
+          {
+            "id": "17317186560",
+            "name": "Evening Walk",
+            "distance": 958.8,
+            "type": "Walk",
+            "start_date_local": "2026-02-07T18:53:43Z",
+            "moving_time": 617
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-08": {
+        "date": "2026-02-08",
+        "totalDistance": 1305.1,
+        "activities": [
+          {
+            "id": "17324814948",
+            "name": "Afternoon Walk",
+            "distance": 1305.1,
+            "type": "Walk",
+            "start_date_local": "2026-02-08T13:44:59Z",
+            "moving_time": 861
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-09": {
+        "date": "2026-02-09",
+        "totalDistance": 1054.1,
+        "activities": [
+          {
+            "id": "17340412455",
+            "name": "Evening Walk",
+            "distance": 1054.1,
+            "type": "Walk",
+            "start_date_local": "2026-02-09T19:43:06Z",
+            "moving_time": 715
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-10": {
+        "date": "2026-02-10",
+        "totalDistance": 860.6,
+        "activities": [
+          {
+            "id": "17352491700",
+            "name": "Night Walk",
+            "distance": 860.6,
+            "type": "Walk",
+            "start_date_local": "2026-02-10T22:02:08Z",
+            "moving_time": 688
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-02-11": {
+        "date": "2026-02-11",
+        "totalDistance": 2351.8,
+        "activities": [
+          {
+            "id": "17364672809",
+            "name": "Evening Walk",
+            "distance": 2351.8,
+            "type": "Walk",
+            "start_date_local": "2026-02-11T20:28:29Z",
+            "moving_time": 3071
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-12": {
+        "date": "2026-02-12",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-13": {
+        "date": "2026-02-13",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-14": {
+        "date": "2026-02-14",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-15": {
+        "date": "2026-02-15",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-16": {
+        "date": "2026-02-16",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-17": {
+        "date": "2026-02-17",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-18": {
+        "date": "2026-02-18",
+        "totalDistance": 4873.5,
+        "activities": [
+          {
+            "id": "17440841211",
+            "name": "Evening Walk",
+            "distance": 4873.5,
+            "type": "Walk",
+            "start_date_local": "2026-02-18T20:16:56Z",
+            "moving_time": 6180
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-19": {
+        "date": "2026-02-19",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-20": {
+        "date": "2026-02-20",
+        "totalDistance": 1124.6,
+        "activities": [
+          {
+            "id": "17460981422",
+            "name": "Evening Walk",
+            "distance": 1124.6,
+            "type": "Walk",
+            "start_date_local": "2026-02-20T18:37:00Z",
+            "moving_time": 1045
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-21": {
+        "date": "2026-02-21",
+        "totalDistance": 1103.2,
+        "activities": [
+          {
+            "id": "17468354794",
+            "name": "Lunch Walk",
+            "distance": 1103.2,
+            "type": "Walk",
+            "start_date_local": "2026-02-21T12:53:53Z",
+            "moving_time": 746
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-22": {
+        "date": "2026-02-22",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-23": {
+        "date": "2026-02-23",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-24": {
+        "date": "2026-02-24",
+        "totalDistance": 1594.2,
+        "activities": [
+          {
+            "id": "17507617637",
+            "name": "Evening Walk",
+            "distance": 1594.2,
+            "type": "Walk",
+            "start_date_local": "2026-02-24T20:26:38Z",
+            "moving_time": 2603
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-25": {
+        "date": "2026-02-25",
+        "totalDistance": 539.2,
+        "activities": [
+          {
+            "id": "17513462114",
+            "name": "Morning Run",
+            "distance": 539.2,
+            "type": "Run",
+            "start_date_local": "2026-02-25T08:13:39Z",
+            "moving_time": 365
+          }
+        ],
+        "isCompleted": false
+      },
+      "2026-02-26": {
+        "date": "2026-02-26",
+        "totalDistance": 3729.8,
+        "activities": [
+          {
+            "id": "17525760782",
+            "name": "Morning Walk",
+            "distance": 734.3,
+            "type": "Walk",
+            "start_date_local": "2026-02-26T08:13:21Z",
+            "moving_time": 951
+          },
+          {
+            "id": "17531495798",
+            "name": "Evening Walk",
+            "distance": 2995.5,
+            "type": "Walk",
+            "start_date_local": "2026-02-26T20:10:36Z",
+            "moving_time": 4330
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-02-27": {
+        "date": "2026-02-27",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-02-28": {
+        "date": "2026-02-28",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-01": {
+        "date": "2026-03-01",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-02": {
+        "date": "2026-03-02",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-03": {
+        "date": "2026-03-03",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-04": {
+        "date": "2026-03-04",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-05": {
+        "date": "2026-03-05",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-06": {
+        "date": "2026-03-06",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-07": {
+        "date": "2026-03-07",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-08": {
+        "date": "2026-03-08",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-09": {
+        "date": "2026-03-09",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-10": {
+        "date": "2026-03-10",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-11": {
+        "date": "2026-03-11",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-12": {
+        "date": "2026-03-12",
+        "totalDistance": 5136.2,
+        "activities": [
+          {
+            "id": "17696866426",
+            "name": "Evening Walk",
+            "distance": 5136.2,
+            "type": "Walk",
+            "start_date_local": "2026-03-12T18:11:18Z",
+            "moving_time": 3074
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-13": {
+        "date": "2026-03-13",
+        "totalDistance": 4003.4,
+        "activities": [
+          {
+            "id": "17708008178",
+            "name": "Evening Walk",
+            "distance": 4003.4,
+            "type": "Walk",
+            "start_date_local": "2026-03-13T18:29:55Z",
+            "moving_time": 2407
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-14": {
+        "date": "2026-03-14",
+        "totalDistance": 2503.6,
+        "activities": [
+          {
+            "id": "17714400252",
+            "name": "Morning Walk",
+            "distance": 2503.6,
+            "type": "Walk",
+            "start_date_local": "2026-03-14T08:16:26Z",
+            "moving_time": 1564
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-15": {
+        "date": "2026-03-15",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-16": {
+        "date": "2026-03-16",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-17": {
+        "date": "2026-03-17",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-18": {
+        "date": "2026-03-18",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-19": {
+        "date": "2026-03-19",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-20": {
+        "date": "2026-03-20",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-21": {
+        "date": "2026-03-21",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-22": {
+        "date": "2026-03-22",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-23": {
+        "date": "2026-03-23",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-24": {
+        "date": "2026-03-24",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-25": {
+        "date": "2026-03-25",
+        "totalDistance": 6824.2,
+        "activities": [
+          {
+            "id": "17855353420",
+            "name": "Evening Walk",
+            "distance": 761.4,
+            "type": "Walk",
+            "start_date_local": "2026-03-25T19:29:22Z",
+            "moving_time": 640
+          },
+          {
+            "id": "17855353806",
+            "name": "Evening Walk",
+            "distance": 6062.8,
+            "type": "Walk",
+            "start_date_local": "2026-03-25T20:17:57Z",
+            "moving_time": 4331
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-26": {
+        "date": "2026-03-26",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-27": {
+        "date": "2026-03-27",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-28": {
+        "date": "2026-03-28",
+        "totalDistance": 2453,
+        "activities": [
+          {
+            "id": "17881504227",
+            "name": "Night Walk",
+            "distance": 1067.2,
+            "type": "Walk",
+            "start_date_local": "2026-03-28T02:57:00Z",
+            "moving_time": 900
+          },
+          {
+            "id": "17883743106",
+            "name": "Morning Walk",
+            "distance": 1385.8,
+            "type": "Walk",
+            "start_date_local": "2026-03-28T09:36:00Z",
+            "moving_time": 1380
+          }
+        ],
+        "isCompleted": true
+      },
+      "2026-03-29": {
+        "date": "2026-03-29",
+        "totalDistance": 0,
+        "activities": [],
+        "isCompleted": false
+      },
+      "2026-03-30": {
+        "date": "2026-03-30",
         "totalDistance": 0,
         "activities": [],
         "isCompleted": false

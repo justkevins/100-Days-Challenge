@@ -26,7 +26,10 @@ import {
   saveLeaderboardData,
   parseExcelFile,
   generateExcelTemplate,
+  getSyncMeta,
+  saveSyncMeta,
 } from "./services/dataManager";
+import { SYNC_COOLDOWN_MS } from "./constants";
 
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -85,8 +88,29 @@ async function startServer() {
       return res.status(400).json({ error: "Invalid data" });
     }
 
+    const userId = String(userStats.userId);
+    const syncMeta = getSyncMeta();
+    const now = Date.now();
+    const lastSyncedAt = syncMeta[userId];
+
+    if (lastSyncedAt) {
+      const lastSyncTime = new Date(lastSyncedAt).getTime();
+      const nextAllowedAt = lastSyncTime + SYNC_COOLDOWN_MS;
+
+      if (!Number.isNaN(lastSyncTime) && now < nextAllowedAt) {
+        return res.status(429).json({
+          error: "Sync cooldown active",
+          reason:
+            "You can sync once every 15 minutes to avoid duplicate updates and unnecessary Strava API requests.",
+          lastSyncedAt,
+          nextAllowedAt: new Date(nextAllowedAt).toISOString(),
+          retryAfterMs: nextAllowedAt - now,
+        });
+      }
+    }
+
     const currentData = getLeaderboardData();
-    const index = currentData.findIndex((u) => u.userId === userStats.userId);
+    const index = currentData.findIndex((u) => u.userId === userId);
 
     if (index >= 0) {
       // Update existing user
@@ -97,7 +121,53 @@ async function startServer() {
     }
 
     saveLeaderboardData(currentData);
-    res.json({ success: true });
+    const syncedAt = new Date(now).toISOString();
+    syncMeta[userId] = syncedAt;
+    saveSyncMeta(syncMeta);
+
+    res.json({
+      success: true,
+      syncedAt,
+      nextAllowedAt: new Date(now + SYNC_COOLDOWN_MS).toISOString(),
+      reason:
+        "You can sync once every 15 minutes to avoid duplicate updates and unnecessary Strava API requests.",
+    });
+  });
+
+  app.get("/api/sync-status/:userId", (req, res) => {
+    const userId = String(req.params.userId || "").trim();
+
+    if (!userId) {
+      return res.status(400).json({ error: "Missing user ID" });
+    }
+
+    const syncMeta = getSyncMeta();
+    const lastSyncedAt = syncMeta[userId];
+
+    if (!lastSyncedAt) {
+      return res.json({
+        canSync: true,
+        lastSyncedAt: null,
+        nextAllowedAt: null,
+        retryAfterMs: 0,
+        reason:
+          "You can sync once every 15 minutes to avoid duplicate updates and unnecessary Strava API requests.",
+      });
+    }
+
+    const now = Date.now();
+    const lastSyncTime = new Date(lastSyncedAt).getTime();
+    const nextAllowedAt = lastSyncTime + SYNC_COOLDOWN_MS;
+    const retryAfterMs = Math.max(0, nextAllowedAt - now);
+
+    return res.json({
+      canSync: retryAfterMs === 0,
+      lastSyncedAt,
+      nextAllowedAt: new Date(nextAllowedAt).toISOString(),
+      retryAfterMs,
+      reason:
+        "You can sync once every 15 minutes to avoid duplicate updates and unnecessary Strava API requests.",
+    });
   });
 
   app.post("/api/admin/login", async (req, res) => {
