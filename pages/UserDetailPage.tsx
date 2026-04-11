@@ -128,7 +128,7 @@ export const UserDetailPage: React.FC = () => {
         <h3 className="text-lg font-bold text-slate-900 mb-6">
           Daily Progress
         </h3>
-        <div className="h-64 w-full">
+        <div className="h-64 w-full min-w-0">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData}>
               <XAxis
