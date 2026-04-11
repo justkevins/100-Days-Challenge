@@ -13,46 +13,39 @@ import { getLoggedInUser } from "./services/stravaAuth";
 import { isWhitelistedAdminAthlete } from "./utils/admin";
 
 const App: React.FC = () => {
-  // Check if we are in the callback phase (Strava redirected with ?code=...)
-  // We handle this outside the HashRouter because the query params come before the hash
   const [authCode, setAuthCode] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const currentUser = getLoggedInUser();
-  const canAccessAdmin =
-    isAdmin || isWhitelistedAdminAthlete(currentUser?.id);
+  const [currentUser, setCurrentUser] = useState(() => getLoggedInUser()); 
+
+  const canAccessAdmin = isAdmin || isWhitelistedAdminAthlete(currentUser?.id);
 
   useEffect(() => {
     const checkAdmin = async () => {
-      const currentUser = getLoggedInUser();
-      setIsAdmin(isWhitelistedAdminAthlete(currentUser?.id));
+      const user = getLoggedInUser();
+      setCurrentUser(user);                                    
+      setIsAdmin(isWhitelistedAdminAthlete(user?.id));
 
       try {
-        const res = await fetch("/api/admin/me", {
-          credentials: "include",
-        });
-
-        if (res.ok) {
-          setIsAdmin(true);
-        }
+        const res = await fetch("/api/admin/me", { credentials: "include" });
+        if (res.ok) setIsAdmin(true);
       } catch {
-        // Ignore cookie-based admin check failures and keep whitelist-based access.
+        // ignore
       }
     };
 
     checkAdmin();
-  }, []);
+  }, []); 
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
-    if (code) {
-      setAuthCode(code);
-    }
-  }, []);
+    if (code) setAuthCode(code);
+  }, []); 
 
   const handleAuthSuccess = () => {
-    const currentUser = getLoggedInUser();
-    setIsAdmin(isWhitelistedAdminAthlete(currentUser?.id));
+    const user = getLoggedInUser();
+    setCurrentUser(user);
+    setIsAdmin(isWhitelistedAdminAthlete(user?.id));
     setAuthCode(null);
   };
 
@@ -78,5 +71,6 @@ const App: React.FC = () => {
     </HashRouter>
   );
 };
+
 
 export default App;

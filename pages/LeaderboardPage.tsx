@@ -63,8 +63,11 @@ export const LeaderboardPage: React.FC = () => {
   const [syncStatus, setSyncStatus] = useState<SyncStatus | null>(null);
   const [now, setNow] = useState(Date.now());
 
+  const syncStatusRef = React.useRef(syncStatus);
+  syncStatusRef.current = syncStatus;
+
   // Get current user to highlight them in the list
-  const loggedInUser = getLoggedInUser();
+  const [loggedInUser] = useState(() => getLoggedInUser());
 
   useEffect(() => {
     if (!loggedInUser) {
@@ -93,7 +96,7 @@ export const LeaderboardPage: React.FC = () => {
     };
 
     loadSyncStatus();
-  }, [loggedInUser?.id]);
+  }, []);
 
   useEffect(() => {
     if (!syncStatus?.nextAllowedAt) return;
@@ -206,22 +209,35 @@ export const LeaderboardPage: React.FC = () => {
     : 0;
   const isCooldownActive = !!loggedInUser && remainingSyncMs > 0;
 
+  // useEffect(() => {
+  //   if (!loggedInUser || !syncStatus) return;
+
+  //   if (!syncStatus.nextAllowedAt || remainingSyncMs > 0) {
+  //     persistSyncStatus(loggedInUser.id, syncStatus);
+  //     return;
+  //   }
+
+  //   const cooledDownStatus = {
+  //     ...syncStatus,
+  //     canSync: true,
+  //     retryAfterMs: 0,
+  //   };
+  //   setSyncStatus(cooledDownStatus);
+  //   persistSyncStatus(loggedInUser.id, cooledDownStatus);
+  // }, [loggedInUser, remainingSyncMs, syncStatus]);
+
   useEffect(() => {
-    if (!loggedInUser || !syncStatus) return;
-
-    if (!syncStatus.nextAllowedAt || remainingSyncMs > 0) {
-      persistSyncStatus(loggedInUser.id, syncStatus);
-      return;
-    }
-
+  if (!loggedInUser || !syncStatusRef.current) return;
+  if (remainingSyncMs === 0 && syncStatusRef.current.nextAllowedAt) {
     const cooledDownStatus = {
-      ...syncStatus,
+      ...syncStatusRef.current,
       canSync: true,
       retryAfterMs: 0,
     };
     setSyncStatus(cooledDownStatus);
     persistSyncStatus(loggedInUser.id, cooledDownStatus);
-  }, [loggedInUser, remainingSyncMs, syncStatus]);
+  }
+}, [remainingSyncMs === 0]);
 
   const syncDisabled = syncing || isCooldownActive;
   const syncHelperText = syncing
@@ -412,7 +428,7 @@ export const LeaderboardPage: React.FC = () => {
               {sortedStats.map((stat, index) => (
                 <tr
                   key={stat.userId}
-                  className={`hover:bg-slate-50 transition-colors ${getLoggedInUser()?.id == stat.userId ? "bg-orange-50/50" : ""}`}
+                  className={`hover:bg-slate-50 transition-colors ${loggedInUser?.id == stat.userId ? "bg-orange-50/50" : ""}`}
                 >
                   <td className="px-6 py-4 text-slate-500 font-medium">
                     #{index + 1}
@@ -430,7 +446,7 @@ export const LeaderboardPage: React.FC = () => {
                       <div>
                         <div className="font-semibold text-slate-900">
                           {stat.name}
-                          {getLoggedInUser()?.id == stat.userId && (
+                          {loggedInUser?.id == stat.userId && (
                             <span className="ml-2 text-xs text-orange-600 bg-orange-100 px-2 py-0.5 rounded-full">
                               You
                             </span>
